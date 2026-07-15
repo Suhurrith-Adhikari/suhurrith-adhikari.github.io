@@ -1,17 +1,135 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
 
+const projects = [
+  { title: "IncidentPilot", description: "AI-assisted incident response platform that connects service failures with semantically relevant code changes.", technologies: ["Python", "FastAPI", "Semantic Retrieval"], href: "https://github.com/Suhurrith-Adhikari/incidentpilot" },
+  { title: "Houston Outage Intelligence", description: "Interactive platform for visualizing power outages and exploring data-driven restoration strategies across Houston.", technologies: ["Python", "XGBoost", "Geospatial Data"], href: "https://github.com/Suhurrith-Adhikari" },
+  { title: "WTI Forecasting Research", description: "Compared machine-learning models across multiple forecasting horizons to evaluate crude-oil price prediction performance.", technologies: ["Machine Learning", "Research", "Data Analysis"], href: "https://github.com/Suhurrith-Adhikari" },
+  { title: "Pulse Monitoring System", description: "Hardware and software system for collecting, processing, and displaying real-time pulse information.", technologies: ["Embedded Systems", "Sensors", "Web"], href: "https://github.com/Suhurrith-Adhikari" },
+];
+
+const experience = [
+  { organization: "H-E-B Retail Media", role: "Software Engineering Intern", period: "Summer 2026", bullets: ["Worked with AdButler and Adobe Experience Manager to expand product and advertising coverage.", "Used AWS ECS, AWS Lambda, and Datadog while contributing to ad delivery and incrementality work."] },
+  { organization: "City of Houston", role: "Technical Intern", period: "Summer 2025", bullets: ["Supported city technology operations through laptop imaging, hardware troubleshooting, and ServiceNow.", "Handled field dispatch and device deployment across City of Houston offices."] },
+  { organization: "Cybersecurity Club", role: "Founder & President", period: "Carnegie Vanguard", bullets: ["Founded a student organization centered on cybersecurity education, competitions, and outreach.", "Built on experience from PicoCTF, GIAC GSEC, GIAC GFACT, and the National Cyber Scholarship."] },
+];
+
+const skillGroups = [
+  { title: "Languages", skills: ["Python", "Java", "JavaScript", "TypeScript", "C++", "SQL", "HTML", "CSS"] },
+  { title: "Frameworks & Systems", skills: ["FastAPI", "React", "Node.js", "REST APIs", "Semantic Retrieval", "XGBoost"] },
+  { title: "Cloud & Tools", skills: ["AWS Lambda", "AWS ECS", "Git", "GitHub", "Linux", "Datadog", "ServiceNow"] },
+  { title: "Certifications", skills: ["GIAC GSEC", "GIAC GFACT", "National Cyber Scholarship Scholar"] },
+];
 ---
+<Layout>
+  <main class="site-container">
+    <section class="hero-shell" aria-labelledby="page-title">
+      <div class="portrait-card">
+        <img src="/profile.jpg" alt="Portrait of Suhurrith Adhikari" onerror="this.style.display='none'; this.nextElementSibling?.removeAttribute('hidden');" />
+        <span class="portrait-fallback" hidden>SA</span>
+      </div>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+      <div class="hero-topline">
+        <h1 id="page-title">SUHURRITH ADHIKARI</h1>
+        <div class="quick-actions">
+          <button id="theme-toggle" class="icon-button" type="button" aria-label="Toggle light and dark theme"><Icon name="sun" size={25} /></button>
+          <a class="icon-button" href="https://github.com/Suhurrith-Adhikari" target="_blank" rel="noreferrer" aria-label="Open Suhurrith's GitHub"><Icon name="github" size={25} /></a>
+          <a class="icon-button" href="https://www.linkedin.com/in/suhurrith-adhikari/" target="_blank" rel="noreferrer" aria-label="Open Suhurrith's LinkedIn"><Icon name="linkedin" size={25} /></a>
+          <a class="icon-button resume-button" href="/resume.pdf" target="_blank" aria-label="Open Suhurrith's resume"><Icon name="resume" size={23} /><span>RESUME</span></a>
+        </div>
+      </div>
+
+      <div class="bio-panel">
+        <p>I'm an incoming electrical engineering student at Stanford interested in software engineering, AI systems, cybersecurity, and human-computer interaction. This summer, I'm working as a software engineering intern at H-E-B Retail Media.</p>
+      </div>
+    </section>
+
+    <section class="portfolio-shell" aria-label="Portfolio">
+      <div class="tab-list" role="tablist" aria-label="Portfolio sections">
+        <button class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="projects-panel" data-tab="projects-panel">PROJECTS</button>
+        <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="experience-panel" data-tab="experience-panel">EXPERIENCE</button>
+        <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="skills-panel" data-tab="skills-panel">SKILLS</button>
+      </div>
+
+      <div class="panel-frame">
+        <section id="projects-panel" class="tab-panel" role="tabpanel" aria-label="Projects">
+          <div class="project-grid">
+            {projects.map((project) => (
+              <a class="project-card" href={project.href} target="_blank" rel="noreferrer">
+                <div class="project-card-heading">
+                  <h2>{project.title}</h2>
+                  <span class="project-icon" aria-hidden="true"><Icon name="github" size={21} /></span>
+                </div>
+                <p>{project.description}</p>
+                <div class="tag-list">{project.technologies.map((technology) => <span>{technology}</span>)}</div>
+              </a>
+            ))}
+          </div>
+          <div class="panel-footer">
+            <a class="github-more" href="https://github.com/Suhurrith-Adhikari" target="_blank" rel="noreferrer"><span>See more on GitHub</span><Icon name="github" size={20} /></a>
+          </div>
+        </section>
+
+        <section id="experience-panel" class="tab-panel" role="tabpanel" aria-label="Experience" hidden>
+          <div class="experience-list">
+            {experience.map((item) => (
+              <article class="experience-card">
+                <div class="experience-heading">
+                  <div><h2>{item.organization}</h2><p>{item.role}</p></div>
+                  <span>{item.period}</span>
+                </div>
+                <ul>{item.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="skills-panel" class="tab-panel" role="tabpanel" aria-label="Skills" hidden>
+          <div class="skills-grid">
+            {skillGroups.map((group) => (
+              <article class="skill-card">
+                <h2>{group.title}</h2>
+                <div class="tag-list">{group.skills.map((skill) => <span>{skill}</span>)}</div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>© {new Date().getFullYear()} Suhurrith Adhikari</p>
+      <div>
+        <a href="https://www.linkedin.com/in/suhurrith-adhikari/" target="_blank" rel="noreferrer">LinkedIn <Icon name="arrow" size={15} /></a>
+        <a href="https://github.com/Suhurrith-Adhikari" target="_blank" rel="noreferrer">GitHub <Icon name="arrow" size={15} /></a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const tabButtons = document.querySelectorAll<HTMLButtonElement>(".tab-button");
+    const tabPanels = document.querySelectorAll<HTMLElement>(".tab-panel");
+
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.dataset.tab;
+        if (!targetId) return;
+        tabButtons.forEach((currentButton) => {
+          const isActive = currentButton === button;
+          currentButton.classList.toggle("active", isActive);
+          currentButton.setAttribute("aria-selected", String(isActive));
+        });
+        tabPanels.forEach((panel) => { panel.hidden = panel.id !== targetId; });
+      });
+    });
+
+    const themeToggle = document.querySelector<HTMLButtonElement>("#theme-toggle");
+    themeToggle?.addEventListener("click", () => {
+      const currentTheme = document.documentElement.dataset.theme || "dark";
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem("theme", nextTheme);
+    });
+  </script>
+</Layout>
